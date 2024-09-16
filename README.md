@@ -1,4 +1,3 @@
-readme_content = """
 # ATM Machine Application
 
 This project is an ATM simulation application built using Spring Boot for the backend. The project simulates bank account operations, such as creating accounts, depositing and withdrawing money, and tracking transaction history.
@@ -80,6 +79,3 @@ Unit tests have been written using JUnit and Mockito for all service classes to 
 3. Use `mvn spring-boot:run` to start the application.
 4. The application will be running on `http://localhost:8089/`.
 5. The application git repository `https://github.com/DENMOUNS/ATM-MACHINE.git`.
-
-"""
-
