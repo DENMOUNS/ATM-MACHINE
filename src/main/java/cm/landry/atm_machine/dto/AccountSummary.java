@@ -5,7 +5,9 @@ import java.math.BigDecimal;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-
+/**
+ * DTO representing a summary of an account.
+ */
 @Data
 @Builder
 @AllArgsConstructor

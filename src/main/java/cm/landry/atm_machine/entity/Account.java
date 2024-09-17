@@ -4,20 +4,21 @@ import java.math.BigDecimal;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.EnumType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.AllArgsConstructor;
 
 /**
  * Represents a bank account in the system.
@@ -33,10 +34,15 @@ public class Account {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    
+    @Column(nullable = false, name = "account_number")
     private String accountNumber;
 
+    @Column(nullable = false, name = "account_name")
+    private String accountName;
+
     @Enumerated(EnumType.STRING)
-    private AccountType accountType; // Renommé en accountType pour plus de clarté
+    private AccountType accountType = AccountType.COURANT; 
 
     @Size(min = 4, max = 6, message = "PIN must be between 4 and 6 digits")
     @Pattern(regexp = "\\d{4,6}", message = "PIN must be a number between 4 and 6 digits")

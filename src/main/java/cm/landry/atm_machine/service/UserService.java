@@ -1,42 +1,22 @@
 package cm.landry.atm_machine.service;
 
-import cm.landry.atm_machine.entity.User;
-import cm.landry.atm_machine.repository.UserRepository;
-import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.stereotype.Service;
+
+import cm.landry.atm_machine.entity.User;
+import cm.landry.atm_machine.repository.UserRepository;
+import lombok.RequiredArgsConstructor;
+
 /**
- * Service class for managing users, implementing UserDetailsService for Spring Security.
+ * Service class for managing users.
  */
 @Service
 @RequiredArgsConstructor
-public class UserService implements UserDetailsService {
+public class UserService {
 
     private final UserRepository userRepository;
-
-    /**
-     * Loads a user by email for authentication purposes.
-     *
-     * @param email the email of the user.
-     * @return the UserDetails object for the user.
-     * @throws UsernameNotFoundException if the user is not found.
-     */
-    @Override
-    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        User user = userRepository.findByEmail(email)
-                .orElseThrow(() -> new UsernameNotFoundException("User not found with email: " + email));
-        return new org.springframework.security.core.userdetails.User(
-                user.getEmail(),
-                user.getPassword(),
-                user.getAuthorities()
-        );
-    }
 
     /**
      * Retrieves all users.
